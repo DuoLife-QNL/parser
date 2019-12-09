@@ -6,7 +6,7 @@
 
 line    \n
 blanks  [ \t]
-end     [$]
+end     [$\r]
 digit   [0-9]
 num     {digit}+(\.{digit}+)?(e[+\-]?{digit}+)?
 
@@ -19,7 +19,7 @@ num     {digit}+(\.{digit}+)?(e[+\-]?{digit}+)?
 "-"         {return MINUS;}
 "*"         {return TIMES;}
 "/"         {return DIV;}
-"$"         {return END;}
+{end}         {return END;}
 {num}       {printf("num = %s\n", yytext); return NUM;}
 .           {return ERROR;}
 

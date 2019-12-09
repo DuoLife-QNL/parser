@@ -1,8 +1,9 @@
 %{
+    #define ACC 1
     #include <stdio.h>
     int yylex();
     int yyerror(const char *s);
-    #define ACC 1
+    int success = 1;
 %}
 
 %token PLUS MINUS TIMES DIV LP RP NUM END
@@ -27,7 +28,8 @@ f   : LP e RP       {printf("F -> (E)\n");}
 
 int main(){
     yyparse();
-    printf("Parsing done.\n");
+    if (success == 1)
+        printf("Parsing done.\n");
     return 0;
 }
 
@@ -35,5 +37,6 @@ int yyerror(const char *msg)
 {
 	extern int yylineno;
 	printf("Parsing Failed\nLine Number: %d %s\n",yylineno,msg);
+    success = 0;
 	return 0;
 }
