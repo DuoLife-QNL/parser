@@ -1,7 +1,7 @@
 %{
     #define ACC 1
     #include <stdio.h>
-    int yylex();
+    extern int yylex();
     int yyerror(const char *s);
     int success = 1;
 %}
